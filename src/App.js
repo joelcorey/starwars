@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import './App.css';
+import SearchPeople from './component/SearchPeople/SearchPeople'
 
-import Header from './component/header/header';
+import Header from './component/Header/Header';
 
 class App extends Component {
   render() {
@@ -9,7 +11,9 @@ class App extends Component {
       <>
         <Header />
         <main role="main" className="App">
-          hi
+          <Route exact path="/" component= { SearchPeople } />
+
+          
         </main>
       </>
     );
