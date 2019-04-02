@@ -10,14 +10,19 @@ class App extends Component {
   state = {
     people: [],
     isLoading: false,
-    isError: null,
+    errors: null,
   }
   fetchApi(endpoint, stateKey = 'people', method = 'GET') {
-    fetch(`http https://swapi.co/api/${endpoint}`, {
+    fetch(`https://swapi.co/api/${endpoint}`, {
       method: method,
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
     .then(response => response.json())
-    .then(response => this.setState({[stateKey]: response}))
+    .then(response => this.setState({[stateKey]: response}, () => {
+      console.log(this.state.people)
+    }))
     .catch(error => this.setState({isError: error}));
   }
   handleSearchCharacter(e) {
